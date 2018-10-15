@@ -1,7 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Prefixer from 'inline-style-prefixer';
-import stylePropType from 'react-style-proptype';
 
 const DEFAULT_USER_AGENT =
   'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.2 (KHTML, like Gecko) Safari/537.2';
@@ -13,7 +11,6 @@ class Pane extends React.PureComponent {
     const {
       children,
       className,
-      prefixer,
       split,
       style: styleProps,
       size,
@@ -39,11 +36,7 @@ class Pane extends React.PureComponent {
     }
 
     return (
-      <div
-        ref={eleRef}
-        className={classes.join(' ')}
-        style={prefixer.prefix(style)}
-      >
+      <div ref={eleRef} className={classes.join(' ')} style={style}>
         {children}
       </div>
     );
@@ -53,15 +46,10 @@ class Pane extends React.PureComponent {
 Pane.propTypes = {
   className: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
-  prefixer: PropTypes.instanceOf(Prefixer).isRequired,
   size: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   split: PropTypes.oneOf(['vertical', 'horizontal']),
-  style: stylePropType,
+  style: PropTypes.object,
   eleRef: PropTypes.func,
-};
-
-Pane.defaultProps = {
-  prefixer: new Prefixer({ userAgent: USER_AGENT }),
 };
 
 export default Pane;

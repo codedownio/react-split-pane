@@ -28,10 +28,12 @@
     "es6"
   ],
   "dependencies": {
-    "inline-style-prefixer": "^3.0.6",
-    "prop-types": "^15.5.10",
-    "react-lifecycles-compat": "^3.0.4",
-    "react-style-proptype": "^3.0.0"
+    "prop-types": "^15.6.2",
+    "react-lifecycles-compat": "^3.0.4"
+  },
+  "peerDependencies": {
+    "react": "16.x",
+    "react-dom": "16.x"
   },
   "devDependencies": {
     "@types/inline-style-prefixer": "^3.0.1",

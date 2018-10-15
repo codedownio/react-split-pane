@@ -1,7 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Prefixer from 'inline-style-prefixer';
-import stylePropType from 'react-style-proptype';
 import { polyfill } from 'react-lifecycles-compat';
 
 import Pane from './Pane';
@@ -253,7 +251,6 @@ class SplitPane extends React.Component {
       paneStyle,
       pane1Style: pane1StyleProps,
       pane2Style: pane2StyleProps,
-      prefixer,
       resizerClassName,
       resizerStyle,
       split,
@@ -303,11 +300,15 @@ class SplitPane extends React.Component {
     }
 
     const classes = ['SplitPane', className, split, disabledClass];
-    const pane1Style = prefixer.prefix(
-      Object.assign({}, paneStyle || {}, pane1StyleProps || {})
+    const pane1Style = Object.assign(
+      {},
+      paneStyle || {},
+      pane1StyleProps || {}
     );
-    const pane2Style = prefixer.prefix(
-      Object.assign({}, paneStyle || {}, pane2StyleProps || {})
+    const pane2Style = Object.assign(
+      {},
+      paneStyle || {},
+      pane1StyleProps || {}
     );
 
     const pane1Classes = ['Pane1', paneClassName, pane1ClassName].join(' ');
@@ -319,7 +320,7 @@ class SplitPane extends React.Component {
         ref={node => {
           this.splitPane = node;
         }}
-        style={prefixer.prefix(style)}
+        style={style}
       >
         <Pane
           className={pane1Classes}
@@ -378,15 +379,14 @@ SplitPane.propTypes = {
   onChange: PropTypes.func,
   onResizerClick: PropTypes.func,
   onResizerDoubleClick: PropTypes.func,
-  prefixer: PropTypes.instanceOf(Prefixer).isRequired,
-  style: stylePropType,
-  resizerStyle: stylePropType,
+  style: PropTypes.object,
+  resizerStyle: PropTypes.object,
   paneClassName: PropTypes.string,
   pane1ClassName: PropTypes.string,
   pane2ClassName: PropTypes.string,
-  paneStyle: stylePropType,
-  pane1Style: stylePropType,
-  pane2Style: stylePropType,
+  paneStyle: PropTypes.object,
+  pane1Style: PropTypes.object,
+  pane2Style: PropTypes.object,
   resizerClassName: PropTypes.string,
   step: PropTypes.number,
 };
@@ -394,7 +394,6 @@ SplitPane.propTypes = {
 SplitPane.defaultProps = {
   allowResize: true,
   minSize: 50,
-  prefixer: new Prefixer({ userAgent: USER_AGENT }),
   primary: 'first',
   split: 'vertical',
   paneClassName: '',
