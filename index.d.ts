@@ -1,4 +1,3 @@
-import * as Prefixer from 'inline-style-prefixer';
 import * as React from 'react';
 
 export type Size = string | number;
