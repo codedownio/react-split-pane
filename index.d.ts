@@ -18,7 +18,6 @@ export interface Props {
   onChange?: (newSize: number) => void;
   onResizerClick?: (event: MouseEvent) => void;
   onResizerDoubleClick?: (event: MouseEvent) => void;
-  prefixer?: Prefixer;
   style?: React.CSSProperties;
   resizerStyle?: React.CSSProperties;
   paneStyle?: React.CSSProperties;
