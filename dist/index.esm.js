@@ -279,11 +279,7 @@ var Pane = (function(_React$PureComponent) {
 
         return React.createElement(
           'div',
-          {
-            ref: eleRef,
-            className: classes.join(' '),
-            style: style,
-          },
+          { ref: eleRef, className: classes.join(' '), style: style },
           children
         );
       },
